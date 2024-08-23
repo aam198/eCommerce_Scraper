@@ -1,0 +1,16 @@
+{
+  "name": "scraper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "DevChemist",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "puppeteer": "^23.1.1"
+  }
+}
