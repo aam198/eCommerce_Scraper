@@ -6,6 +6,7 @@ const scrape = async () => {
 
   const url = 'https://books.toscrape.com';
 
+
   await browser.close();
 };
 
