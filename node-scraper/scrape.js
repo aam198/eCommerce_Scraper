@@ -14,8 +14,8 @@ const scrape = async() => {
   // GiantFoods is giving: Site Temporarily Down
   // const url = 'https://giantfoodstores.com';
 
-  // Test for page title
-  // await page.goto(url);
+
+  await page.goto(url);
 
   const books = await page.evaluate(() => {
     const bookElements = document.querySelectorAll('.product_pod');
@@ -30,10 +30,10 @@ const scrape = async() => {
 
   // Evaluate method allows to run javascript in the context of the page and select data using query selector etc
   // const meats = await page.evaluate(() => {
-    // Get the element that surrounds the data
+    // /Get the element that surrounds the data
     // const productElements = document.querySelectorAll(`[data-test*="item-tile-name-button"]`);
-    // Since we can't console.log we need to return
-    // return productElements;
+    // /Since we can't console.log we need to return
+  //   return productElements;
   // });
 
   // console.log(meats);
