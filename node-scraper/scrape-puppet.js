@@ -19,7 +19,8 @@ const scrape = async () => {
       const stock = book.querySelector('.instock.availability') 
         ? 'In Stock' 
         : 'Out Of Stock';
-
+      
+      // Looks at class with star-rating, looks at overall classes within that p tag and splits at the space, then outputs the second class
       const rating = book.querySelector('.star-rating').className.split(' ')[1];
       return rating;
 
