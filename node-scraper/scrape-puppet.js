@@ -19,8 +19,11 @@ const scrape = async () => {
       const stock = book.querySelector('.instock.availability') 
         ? 'In Stock' 
         : 'Out Of Stock';
-      return stock;
-    })
+
+      const rating = book.querySelector('.star-rating').className.split(' ')[1];
+      return rating;
+
+    });
   });
 
   console.log(books);
