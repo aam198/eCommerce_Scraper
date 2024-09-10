@@ -15,7 +15,11 @@ const scrape = async () => {
     return Array.from(bookElements).map((book) => {
       const title = book.querySelector('h3 a').getAttribute('title');
       const price = book.querySelector('.price_color').textContent;
-      return price;
+      // when there are more than one class assigned 
+      const stock = book.querySelector('.instock.availability') 
+        ? 'In Stock' 
+        : 'Out Of Stock';
+      return stock;
     })
   });
 
