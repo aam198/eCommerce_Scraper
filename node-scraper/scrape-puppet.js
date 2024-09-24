@@ -2,7 +2,7 @@ import puppeteer from "puppeteer";
 
 const scrape = async () => {
   // Launch Headless Browser
-  const browser = await puppeteer.launch({headless:true});
+  const browser = await puppeteer.launch({headless: true});
   const page = await browser.newPage();
 
   const url = 'https://books.toscrape.com';
