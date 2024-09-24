@@ -22,8 +22,17 @@ const scrape = async () => {
       
       // Looks at class with star-rating, looks at overall classes within that p tag and splits at the space, then outputs the second class
       const rating = book.querySelector('.star-rating').className.split(' ')[1];
-      return rating;
-
+      const link = book.querySelector('h3 a').getAttribute('href');
+  
+      // To return all of the variables by creating an object
+      return {
+        title,
+        price,
+        stock,
+        rating,
+        link
+      };
+      
     });
   });
 
