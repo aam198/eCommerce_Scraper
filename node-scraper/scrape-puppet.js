@@ -41,6 +41,8 @@ const scrape = async () => {
   console.log(books);
 
   // Using fs module to create books.json file to save results 
+  // writeFileSync, creates/writes data to books.json, passes in books through stringify method, with 2 spacer for formatting
+  fs.writeFileSync('books.json', JSON.stringify(books, null, 2));
 
   console.log('Data saved to books.json');
 
