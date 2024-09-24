@@ -1,4 +1,5 @@
 import puppeteer from "puppeteer";
+import fs from 'fs';
 
 const scrape = async () => {
   // Launch Headless Browser
@@ -32,11 +33,16 @@ const scrape = async () => {
         rating,
         link
       };
-      
+
     });
   });
 
+  // node print version
   console.log(books);
+
+  // Using fs module to create books.json file to save results 
+
+  console.log('Data saved to books.json');
 
   await browser.close();
 };
