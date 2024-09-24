@@ -6,36 +6,46 @@ const scrape = async () => {
   const browser = await puppeteer.launch({headless: true});
   const page = await browser.newPage();
 
-  const url = 'https://books.toscrape.com';
+  // To paginate and scrape additional books that are listed 
+  const allBooks = [];
+  let currentPage = 1;
+  const maxPages = 10;
 
-  await page.goto(url);
+  while (currentPage <= maxPages){
+    // Update for dynamic value 
+    const url = `https://books.toscrape.com/catalogue/page-${currentPage}.html`;
 
-  const books = await page.evaluate(() => {
-    const bookElements = document.querySelectorAll('.product_pod');
-    // Empty objects into an array of each product_pod
-    return Array.from(bookElements).map((book) => {
-      const title = book.querySelector('h3 a').getAttribute('title');
-      const price = book.querySelector('.price_color').textContent;
-      // when there are more than one class assigned 
-      const stock = book.querySelector('.instock.availability') 
-        ? 'In Stock' 
-        : 'Out Of Stock';
-      
-      // Looks at class with star-rating, looks at overall classes within that p tag and splits at the space, then outputs the second class
-      const rating = book.querySelector('.star-rating').className.split(' ')[1];
-      const link = book.querySelector('h3 a').getAttribute('href');
-  
-      // To return all of the variables by creating an object
-      return {
-        title,
-        price,
-        stock,
-        rating,
-        link
-      };
+    await page.goto(url);
 
+    const books = await page.evaluate(() => {
+      const bookElements = document.querySelectorAll('.product_pod');
+      // Empty objects into an array of each product_pod
+      return Array.from(bookElements).map((book) => {
+        const title = book.querySelector('h3 a').getAttribute('title');
+        const price = book.querySelector('.price_color').textContent;
+        // when there are more than one class assigned 
+        const stock = book.querySelector('.instock.availability') 
+          ? 'In Stock' 
+          : 'Out Of Stock';
+        
+        // Looks at class with star-rating, looks at overall classes within that p tag and splits at the space, then outputs the second class
+        const rating = book.querySelector('.star-rating').className.split(' ')[1];
+        const link = book.querySelector('h3 a').getAttribute('href');
+    
+        // To return all of the variables by creating an object
+        return {
+          title,
+          price,
+          stock,
+          rating,
+          link
+        };
+      });
     });
-  });
+
+    
+    currentPage++;
+  };
 
   // node print version
   console.log(books);
