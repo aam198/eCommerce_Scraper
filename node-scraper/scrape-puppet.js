@@ -17,6 +17,7 @@ const scrape = async () => {
 
     await page.goto(url);
 
+    // Scraping the page for data and inputting into books variable
     const books = await page.evaluate(() => {
       const bookElements = document.querySelectorAll('.product_pod');
       // Empty objects into an array of each product_pod
