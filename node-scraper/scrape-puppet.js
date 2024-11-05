@@ -43,17 +43,22 @@ const scrape = async () => {
         };
       });
     });
-
+  // node print in console check
+    console.log(books);
     
+    // Using spread operator to add books from each page to allBooks array
+    allBooks.push(...books);
+
+    console.log(`Books on page ${currentPage}: `, books);
     currentPage++;
   };
 
-  // node print version
-  console.log(books);
+
+
 
   // Using fs module to create books.json file to save results 
-  // writeFileSync, creates/writes data to books.json, passes in books through stringify method, with 2 spacer for formatting
-  fs.writeFileSync('books.json', JSON.stringify(books, null, 2));
+  // writeFileSync, creates/writes data to books.json, passes in allBooks array through stringify method, with 2 spacer for formatting
+  fs.writeFileSync('books.json', JSON.stringify(allBooks, null, 2));
 
   console.log('Data saved to books.json');
 
