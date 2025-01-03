@@ -14,6 +14,7 @@ def fetch_books(page_number):
 
   # specify the data we want to extract
   books = []
+
   # accessing soup object and using a method to retrieve specific data, <article> with attribute class = product_pod
   book_elements = soup.find_all('article', class_='product_pod')
 
@@ -55,6 +56,8 @@ def main():
     books_on_page = fetch_books(current_page)
     all_books.extend(books_on_page)
 
+    print(f"Books on page {current_page}: {books_on_page}")
+          
 # Run the function
 if __name__ == "__main__":
     main()
