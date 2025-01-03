@@ -9,6 +9,6 @@ def fetch_books(page_number):
 def main():
   fetch_books(1)
 
-
+# Run the function
 if __name__ == "__main__":
     main()
