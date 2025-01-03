@@ -57,6 +57,13 @@ def main():
     all_books.extend(books_on_page)
 
     print(f"Books on page {current_page}: {books_on_page}")
+
+    # Save data to file, with is used to wrap the execution of block of code. Passing in books.json with write mode as book_pages being a function
+    with open('books.json', 'w') as book_pages:
+      # After file is opened all_books is written with indent of 2
+      json.dump(all_books, book_pages, indent=2)
+    
+    print('data is saved to books.json')
           
 # Run the function
 if __name__ == "__main__":
