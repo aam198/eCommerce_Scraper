@@ -10,7 +10,16 @@ def fetch_books(page_number):
   soup = BeautifulSoup(response.text, 'html.parser')
 
   # Test, which will print out the entire website in html format
-  print(soup.prettify())
+  # print(soup.prettify())
+
+  # specify the data we want to extract
+  books = []
+  # accessing soup object and using a method to retrieve specific data, <article> with attribute class = product_pod
+  book_elements = soup.find_all('article', class_='product_pod')
+
+  for book in book_elements:
+    # within <article> this finds the title, by locating the child h3 and the next child that is <a> with attribute title 
+    title = book.find('h3').find('a')['title']
 
 # Entry point
 def main():
