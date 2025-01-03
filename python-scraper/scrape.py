@@ -30,13 +30,30 @@ def fetch_books(page_number):
 
     # Get rating, since there can be more than one rating as a class, we can make it into a list and select the second item
     rating = book.find('p', class_='star-rating')['class'][1]
-    print(rating)
-
+    
+    # Extracting the link by finding <a> with href attribute. This gives us a route so we will fix this in the books object
+    link = book.find('h3').find('a')['href']
+    
+    # Pass into array
+    books.append({
+      'title': title,
+      'price': price,
+      'stock': stock,
+      'rating': rating,
+      'link': f"https://books.toscrape.com/catalogue/{link}"
+    })
+  return(books)
 
 
 # Entry point
 def main():
-  fetch_books(1)
+  # List of all books
+  all_books = []
+  max_pages = 10
+
+  for current_page in range(1, max_pages + 1):
+    books_on_page = fetch_books(current_page)
+    all_books.extend(books_on_page)
 
 # Run the function
 if __name__ == "__main__":
