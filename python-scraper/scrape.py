@@ -20,6 +20,19 @@ def fetch_books(page_number):
   for book in book_elements:
     # within <article> this finds the title, by locating the child h3 and the next child that is <a> with attribute title 
     title = book.find('h3').find('a')['title']
+    # print (title)
+
+    # Get Price
+    price = book.find('p', class_='price_color').text
+
+    # Check if in stock or out of stock
+    stock = 'In stock' if 'In stock' in book.find('p', class_='instock availability').text else 'Out of Stock'
+
+    # Get rating, since there can be more than one rating as a class, we can make it into a list and select the second item
+    rating = book.find('p', class_='star-rating')['class'][1]
+    print(rating)
+
+
 
 # Entry point
 def main():
